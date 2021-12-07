@@ -35,6 +35,17 @@ export const STATISTIC_CONFIGS = {
     showDelta: true,
     hasPrimary: true,
   },
+  confirmedProp: {
+    displayName: 'proportion confirmed',
+    format: '%',
+    color: '#ff073a',
+    tableConfig: {
+      hide: true,
+    },
+    hasPrimary: true,
+    showDelta: true,
+    hideZero: true,
+  },
   active: {
     displayName: 'active',
     color: '#007bff',
@@ -74,7 +85,7 @@ export const STATISTIC_CONFIGS = {
     category: 'tested',
   },
   vaccinated1: {
-    displayName: 'vaccinated (at least one dose)',
+    displayName: 'partially vaccinated',
     color: '#fb5581',
     format: 'short',
     showDelta: true,
@@ -93,6 +104,32 @@ export const STATISTIC_CONFIGS = {
     displayName: 'vaccine doses administered',
     color: '#fb5581',
     format: 'short',
+    showDelta: true,
+    hideZero: true,
+    category: 'vaccinated',
+  },
+  vaccinated1Prop: {
+    displayName: 'proportion partially vaccinated',
+    format: '%',
+    color: '#148014',
+    nonLinear: true,
+    tableConfig: {
+      hide: true,
+    },
+    hasPrimary: true,
+    showDelta: true,
+    hideZero: true,
+    category: 'vaccinated',
+  },
+  vaccinated2Prop: {
+    displayName: 'proportion fully vaccinated',
+    format: '%',
+    color: '#14a014',
+    nonLinear: true,
+    tableConfig: {
+      hide: true,
+    },
+    hasPrimary: true,
     showDelta: true,
     hideZero: true,
     category: 'vaccinated',
@@ -120,6 +157,7 @@ export const STATISTIC_CONFIGS = {
   recoveryRatio: {
     displayName: 'recovery ratio',
     format: '%',
+    color: '#fd7e14',
     nonLinear: true,
     tableConfig: {
       hide: true,
@@ -136,6 +174,7 @@ export const STATISTIC_CONFIGS = {
     hasPrimary: true,
   },
   caseGrowth: {
+    // Doesn't work if delta21_14 is not available
     displayName: 'Case Growth',
     format: '%',
     nonLinear: true,
@@ -170,15 +209,24 @@ export const STATISTIC_CONFIGS = {
 };
 
 export const PRIMARY_STATISTICS = [
-  'confirmed',
-  'active',
-  'recovered',
-  'deceased',
+  // 'confirmed',
+  // 'active',
+  // 'recovered',
+  // 'deceased',
+  'vaccinated1',
+  'vaccinated2',
+  // 'vaccinated',
 ];
 
 export const LEVEL_STATISTICS = [...PRIMARY_STATISTICS];
 
-export const TABLE_STATISTICS = [...PRIMARY_STATISTICS, 'tested', 'vaccinated'];
+export const TABLE_STATISTICS = [
+  ...PRIMARY_STATISTICS,
+  'cfr',
+  // 'tested',
+  // 'recovered',
+  // 'deceased',
+];
 
 export const TABLE_STATISTICS_EXPANDED = Object.keys(STATISTIC_CONFIGS).filter(
   (statistic) => !STATISTIC_CONFIGS[statistic]?.tableConfig?.hide
@@ -187,10 +235,11 @@ export const TABLE_STATISTICS_EXPANDED = Object.keys(STATISTIC_CONFIGS).filter(
 export const MAP_STATISTICS = [...PRIMARY_STATISTICS];
 
 export const TIMESERIES_STATISTICS = [
-  ...PRIMARY_STATISTICS,
-  'tested',
-  'vaccinated',
-  'tpr',
+  // ...PRIMARY_STATISTICS,
+  'vaccinated1Prop',
+  'vaccinated2Prop',
+  'confirmedProp',
+  'cfr',
 ];
 
 export const BRUSH_STATISTICS = ['confirmed'];

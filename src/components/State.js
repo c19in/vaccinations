@@ -88,7 +88,10 @@ function State() {
     refreshInterval: 100000,
   });
 
+  const metadata = data;
   const stateData = data?.[stateCode];
+
+  // console.log(metadata);
 
   const toggleShowAllDistricts = () => {
     setShowAllDistricts(!showAllDistricts);
@@ -369,6 +372,7 @@ function State() {
                   regionHighlighted,
                   setRegionHighlighted,
                   noRegionHighlightedDistrictData,
+                  metadata,
                 }}
                 forceRender={!!timeseriesResponseError}
               />

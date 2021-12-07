@@ -41,6 +41,7 @@ function Timeseries({
   isLog,
   isMovingAverage,
   noRegionHighlightedDistrictData,
+  metadata,
 }) {
   const {t} = useTranslation();
   const refs = useRef([]);
@@ -53,13 +54,22 @@ function Timeseries({
     setHighlightedDate(dates[dates.length - 1]);
   }, [dates]);
 
+  // console.log('checking metadata in Timeseries()');
+  // console.log(metadata);
+
   const getTimeseriesStatistic = useCallback(
     (date, statistic, movingAverage = isMovingAverage) => {
-      return getStatistic(timeseries?.[date], chartType, statistic, {
-        movingAverage,
-      });
+      return getStatistic(
+        timeseries?.[date],
+        chartType,
+        statistic,
+        {
+          movingAverage,
+        },
+        metadata
+      );
     },
-    [chartType, isMovingAverage, timeseries]
+    [chartType, isMovingAverage, timeseries, metadata]
   );
 
   const condenseChart = useMemo(() => {

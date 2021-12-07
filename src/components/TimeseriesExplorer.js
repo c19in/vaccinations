@@ -46,6 +46,7 @@ function TimeseriesExplorer({
   expandTable = false,
   hideVaccinated = false,
   noRegionHighlightedDistrictData,
+  metadata,
 }) {
   const {t} = useTranslation();
   const [lookback, setLookback] = useLocalStorage('timeseriesLookbackDays', 90);
@@ -104,6 +105,22 @@ function TimeseriesExplorer({
       return timeseries?.[selectedRegion.stateCode]?.dates;
     }
   }, [timeseries, selectedRegion.stateCode, selectedRegion.districtName]);
+
+  // console.log('checking metadata availability');
+  // console.log(metadata);
+
+  const selectedMetadata = useMemo(() => {
+    if (selectedRegion.districtName) {
+      return metadata?.[selectedRegion.stateCode]?.districts?.[
+        selectedRegion.districtName
+      ]?.meta;
+    } else {
+      return metadata?.[selectedRegion.stateCode]?.meta;
+    }
+  }, [metadata, selectedRegion.stateCode, selectedRegion.districtName]);
+
+  // console.log('creating selectedMetadata in TimeseriesExplorer()');
+  // console.log(selectedMetadata);
 
   const regions = useMemo(() => {
     const states = Object.keys(timeseries || {})
@@ -338,6 +355,7 @@ function TimeseriesExplorer({
             timeseries={selectedTimeseries}
             regionHighlighted={selectedRegion}
             dates={brushSelectionDates}
+            metadata={selectedMetadata}
             {...{
               statistics,
               endDate,

@@ -69,6 +69,15 @@ function Home() {
     }
   );
 
+  const {data: metadata} = useStickySWR(
+    `${DATA_API_ROOT}/data.min.json`,
+    fetcher,
+    {
+      revalidateOnMount: true,
+      refreshInterval: API_REFRESH_INTERVAL,
+    }
+  );
+
   const {data} = useStickySWR(
     `${DATA_API_ROOT}/data${date ? `-${date}` : ''}.min.json`,
     fetcher,
@@ -282,6 +291,7 @@ function Home() {
                       expandTable,
                       hideVaccinated,
                       noRegionHighlightedDistrictData,
+                      metadata,
                     }}
                   />
                 </Suspense>

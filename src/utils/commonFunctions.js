@@ -136,7 +136,7 @@ export const toTitleCase = (str) => {
   });
 };
 
-export const getStatistic = (
+export const getStatistic = function (
   data,
   type,
   statistic,
@@ -145,8 +145,9 @@ export const getStatistic = (
     normalizedByPopulationPer = null,
     movingAverage = false,
     canBeNaN = false,
-  } = {}
-) => {
+  } = {},
+  metadata
+) {
   // TODO: Replace delta with daily to remove ambiguity
   //       Or add another type for daily/delta
 
@@ -194,6 +195,18 @@ export const getStatistic = (
     const dose1 = data?.[type]?.vaccinated1 || 0;
     const dose2 = data?.[type]?.vaccinated2 || 0;
     val = dose1 + dose2;
+  } else if (statistic === 'vaccinated1Prop') {
+    const dose = data?.[type]?.vaccinated1 || 0;
+    const popn = metadata?.population;
+    val = 100 * (dose / popn);
+  } else if (statistic === 'vaccinated2Prop') {
+    const dose = data?.[type]?.vaccinated2 || 0;
+    const popn = metadata?.population;
+    val = 100 * (dose / popn);
+  } else if (statistic === 'confirmedProp') {
+    const conf = data?.[type]?.confirmed || 0;
+    const popn = metadata?.population;
+    val = 100 * (conf / popn);
   } else if (statistic === 'tpr') {
     const confirmed = data?.[type]?.confirmed || 0;
     const tested = data?.[type]?.tested || 0;
