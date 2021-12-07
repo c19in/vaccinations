@@ -53,7 +53,7 @@ function Navbar({pages, showLanguageSwitcher, setShowLanguageSwitcher}) {
     setShowLanguageSwitcher(!showLanguageSwitcher);
   }, [expand, showLanguageSwitcher, setExpand, setShowLanguageSwitcher]);
 
-  // FIXME: used incovid19 below because ${process.env.PUBLIC_URL} encodes slash
+  // FIXME: used vaccinations below because ${process.env.PUBLIC_URL} encodes slash
 
   return navbarTransition((style, item) => (
     <animated.div className="Navbar" {...{style}}>
@@ -74,7 +74,7 @@ function Navbar({pages, showLanguageSwitcher, setShowLanguageSwitcher}) {
 
         {windowSize.width >= 769 && (
           <>
-            <Link to="/incovid19">
+            <Link to="/vaccinations">
               <span>
                 <Home {...activeNavIcon('/')} />
               </span>

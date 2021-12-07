@@ -29,7 +29,7 @@ and sync the created `build` folder to be served by a static
 server. To deploy using Github pages, sync to the `docs` folder, e.g.,
 
 ```
-rsync -av --delete build/ yarn/
+rsync -av --delete build/ docs/
 ```
 
 and commit / push after adding any newly created files.
