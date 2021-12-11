@@ -6,7 +6,7 @@ import {
   STATISTIC_CONFIGS,
   UNKNOWN_DISTRICT_KEY,
 } from '../constants';
-import useIsVisible from '../hooks/useIsVisible';
+// import useIsVisible from '../hooks/useIsVisible';
 import {
   fetcher,
   formatNumber,
@@ -25,7 +25,7 @@ import {
   useEffect,
   lazy,
   Suspense,
-  useRef,
+  // useRef,
 } from 'react';
 import {Helmet} from 'react-helmet';
 import {useTranslation} from 'react-i18next';
@@ -43,7 +43,7 @@ const MapExplorer = lazy(() => retry(() => import('./MapExplorer')));
 const MapSwitcher = lazy(() => retry(() => import('./MapSwitcher')));
 const Minigraphs = lazy(() => retry(() => import('./Minigraphs')));
 const StateHeader = lazy(() => retry(() => import('./StateHeader')));
-const StateMeta = lazy(() => retry(() => import('./StateMeta')));
+// const StateMeta = lazy(() => retry(() => import('./StateMeta')));
 const TimeseriesExplorer = lazy(() =>
   retry(() => import('./TimeseriesExplorer'))
 );
@@ -118,8 +118,8 @@ function State() {
     return gridRowCount;
   }, [stateData]);
 
-  const stateMetaElement = useRef();
-  const isStateMetaVisible = useIsVisible(stateMetaElement);
+  // const stateMetaElement = useRef();
+  // const isStateMetaVisible = useIsVisible(stateMetaElement);
 
   const trail = useMemo(() => {
     const styles = [];
@@ -229,20 +229,6 @@ function State() {
                   noDistrictData,
                 }}
               ></MapExplorer>
-            </Suspense>
-          )}
-
-          <span ref={stateMetaElement} />
-
-          {isStateMetaVisible && data && (
-            <Suspense fallback={<div />}>
-              <StateMeta
-                {...{
-                  stateCode,
-                  data,
-                }}
-                timeseries={timeseries?.[stateCode]?.dates}
-              />
             </Suspense>
           )}
         </div>

@@ -111,26 +111,26 @@ export const STATISTIC_CONFIGS = {
   vaccinated1Prop: {
     displayName: 'proportion partially vaccinated',
     format: '%',
-    color: '#148014',
+    color: '#14a014',
     nonLinear: true,
     tableConfig: {
-      hide: true,
+      hide: false,
     },
     hasPrimary: true,
-    showDelta: true,
+    showDelta: false,
     hideZero: true,
     category: 'vaccinated',
   },
   vaccinated2Prop: {
     displayName: 'proportion fully vaccinated',
     format: '%',
-    color: '#14a014',
+    color: '#141480',
     nonLinear: true,
     tableConfig: {
-      hide: true,
+      hide: false,
     },
     hasPrimary: true,
-    showDelta: true,
+    showDelta: false,
     hideZero: true,
     category: 'vaccinated',
   },
@@ -232,14 +232,24 @@ export const TABLE_STATISTICS_EXPANDED = Object.keys(STATISTIC_CONFIGS).filter(
   (statistic) => !STATISTIC_CONFIGS[statistic]?.tableConfig?.hide
 );
 
-export const MAP_STATISTICS = [...PRIMARY_STATISTICS];
+export const MAP_STATISTICS = [
+  'vaccinated2Prop',
+  'vaccinated1Prop',
+  ...PRIMARY_STATISTICS,
+];
 
 export const TIMESERIES_STATISTICS = [
   // ...PRIMARY_STATISTICS,
-  'vaccinated1Prop',
-  'vaccinated2Prop',
+  // 'vaccinated1Prop',
+  // 'vaccinated2Prop',
   'confirmedProp',
   'cfr',
+];
+
+export const XYPLOT_STATISTICS = [
+  // ...PRIMARY_STATISTICS,
+  'vaccinated1Prop',
+  'vaccinated2Prop',
 ];
 
 export const BRUSH_STATISTICS = ['confirmed'];
@@ -292,7 +302,9 @@ export const MAP_TYPES = {
 };
 
 export const MAPS_DIR =
-  process.env.NODE_ENV === 'production' ? '/mini_maps' : '/projected_maps';
+  process.env.NODE_ENV === 'production'
+    ? '/mini_maps'
+    : 'https://c19in.github.io/mini_maps';
 
 export const MAP_META = {
   AP: {

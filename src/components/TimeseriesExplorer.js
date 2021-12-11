@@ -5,6 +5,7 @@ import {
   STATISTIC_CONFIGS,
   TIMESERIES_CHART_TYPES,
   TIMESERIES_LOOKBACK_DAYS,
+  XYPLOT_STATISTICS,
   TIMESERIES_STATISTICS,
 } from '../constants';
 import useIsVisible from '../hooks/useIsVisible';
@@ -32,6 +33,9 @@ import {
 import {useTranslation} from 'react-i18next';
 import {useLocalStorage, useWindowSize} from 'react-use';
 
+const TimeseriesOverlay = lazy(() =>
+  retry(() => import('./TimeseriesOverlay'))
+);
 const Timeseries = lazy(() => retry(() => import('./Timeseries')));
 const TimeseriesBrush = lazy(() => retry(() => import('./TimeseriesBrush')));
 
@@ -220,6 +224,18 @@ function TimeseriesExplorer({
     [chartType, hideVaccinated]
   );
 
+  const xystatistics = useMemo(
+    () =>
+      XYPLOT_STATISTICS.filter(
+        (statistic) =>
+          (!(STATISTIC_CONFIGS[statistic]?.category === 'vaccinated') ||
+            !hideVaccinated) &&
+          // (chartType === 'total' || statistic !== 'active') &&
+          (chartType === 'delta' || statistic !== 'tpr')
+      ),
+    [chartType, hideVaccinated]
+  );
+
   return (
     <div
       className={classnames(
@@ -351,6 +367,21 @@ function TimeseriesExplorer({
       )}
       {isVisible && (
         <Suspense fallback={<TimeseriesLoader />}>
+          <TimeseriesOverlay
+            timeseries={selectedTimeseries}
+            regionHighlighted={selectedRegion}
+            dates={brushSelectionDates}
+            metadata={selectedMetadata}
+            {...{
+              xystatistics,
+              endDate,
+              chartType,
+              isUniform,
+              isLog,
+              isMovingAverage,
+              noRegionHighlightedDistrictData,
+            }}
+          />
           <Timeseries
             timeseries={selectedTimeseries}
             regionHighlighted={selectedRegion}

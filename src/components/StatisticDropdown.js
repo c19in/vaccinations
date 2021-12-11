@@ -1,6 +1,7 @@
 import {
   MAP_TYPES,
-  TABLE_STATISTICS_EXPANDED,
+  MAP_STATISTICS,
+  // TABLE_STATISTICS_EXPANDED,
   STATISTIC_CONFIGS,
 } from '../constants';
 import {capitalize} from '../utils/commonFunctions';
@@ -30,7 +31,7 @@ const StatisticDropdown = ({
   const currentStatisticConfig = STATISTIC_CONFIGS[currentStatistic];
 
   const statistics = useMemo(() => {
-    const filteredStatistics = TABLE_STATISTICS_EXPANDED.filter(
+    const filteredStatistics = MAP_STATISTICS.filter(
       (statistic) =>
         (mapType === MAP_TYPES.COUNTRY ||
           STATISTIC_CONFIGS[statistic]?.category !== 'tested' ||
@@ -42,6 +43,8 @@ const StatisticDropdown = ({
       ? filteredStatistics
       : [currentStatistic, ...filteredStatistics];
   }, [currentStatistic, mapType, hideDistrictTestData, hideVaccinated]);
+
+  // console.log(statistics);
 
   const handleChange = useCallback(
     (event) => {
