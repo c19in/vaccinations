@@ -7,9 +7,8 @@ function Banner(props) {
   return (
     <div className="Banner fadeInDown" style={{animationDelay: '0.4s'}}>
       <div className="wrapper">
-        The&nbsp; <a href="https://covid19india.org">covid19india.org</a>
-        frontend using data from &nbsp;
-        <a href="https://data.incovid19.org">data.incovid19.org</a>.
+        Status of vaccinations using data from &nbsp;
+        <a href="https://data.incovid19.org">data.incovid19.org</a>. &nbsp;
         Details&nbsp; <a href="https://c19in.github.io">here</a>.
       </div>
     </div>

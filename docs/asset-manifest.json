@@ -25,8 +25,8 @@
     "static/js/10.5195644f.chunk.js.map": "/vaccinations/static/js/10.5195644f.chunk.js.map",
     "main.js": "/vaccinations/static/js/main.9898db52.chunk.js",
     "main.js.map": "/vaccinations/static/js/main.9898db52.chunk.js.map",
-    "runtime-main.js": "/vaccinations/static/js/runtime-main.d8efd7f7.js",
-    "runtime-main.js.map": "/vaccinations/static/js/runtime-main.d8efd7f7.js.map",
+    "runtime-main.js": "/vaccinations/static/js/runtime-main.b03b2181.js",
+    "runtime-main.js.map": "/vaccinations/static/js/runtime-main.b03b2181.js.map",
     "static/js/13.355a9936.chunk.js": "/vaccinations/static/js/13.355a9936.chunk.js",
     "static/js/13.355a9936.chunk.js.map": "/vaccinations/static/js/13.355a9936.chunk.js.map",
     "static/js/14.cbaf4a8a.chunk.js": "/vaccinations/static/js/14.cbaf4a8a.chunk.js",
@@ -75,8 +75,8 @@
     "static/js/34.9f2d06a4.chunk.js.map": "/vaccinations/static/js/34.9f2d06a4.chunk.js.map",
     "static/js/35.305f3582.chunk.js": "/vaccinations/static/js/35.305f3582.chunk.js",
     "static/js/35.305f3582.chunk.js.map": "/vaccinations/static/js/35.305f3582.chunk.js.map",
-    "static/js/36.c779d6c7.chunk.js": "/vaccinations/static/js/36.c779d6c7.chunk.js",
-    "static/js/36.c779d6c7.chunk.js.map": "/vaccinations/static/js/36.c779d6c7.chunk.js.map",
+    "static/js/36.fef07b79.chunk.js": "/vaccinations/static/js/36.fef07b79.chunk.js",
+    "static/js/36.fef07b79.chunk.js.map": "/vaccinations/static/js/36.fef07b79.chunk.js.map",
     "static/js/37.0ea5f936.chunk.js": "/vaccinations/static/js/37.0ea5f936.chunk.js",
     "static/js/37.0ea5f936.chunk.js.map": "/vaccinations/static/js/37.0ea5f936.chunk.js.map",
     "static/js/38.3e2e52e5.chunk.js": "/vaccinations/static/js/38.3e2e52e5.chunk.js",
@@ -106,7 +106,7 @@
     "static/media/getFetch.cjs": "/vaccinations/static/media/getFetch.582d29c4.cjs"
   },
   "entrypoints": [
-    "static/js/runtime-main.d8efd7f7.js",
+    "static/js/runtime-main.b03b2181.js",
     "static/js/13.355a9936.chunk.js",
     "static/js/main.9898db52.chunk.js"
   ]
