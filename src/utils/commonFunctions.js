@@ -165,6 +165,10 @@ export const getStatistic = function (
     }
   }
 
+  const popn = data?.meta?.population
+    ? data?.meta?.population
+    : metadata?.population;
+
   let multiplyFactor = 1;
   if (type === 'delta' && movingAverage) {
     type = 'delta7';
@@ -172,11 +176,11 @@ export const getStatistic = function (
   }
 
   if (normalizedByPopulationPer === 'million') {
-    multiplyFactor *= 1e6 / data?.meta?.population;
+    multiplyFactor *= 1e6 / popn;
   } else if (normalizedByPopulationPer === 'lakh') {
-    multiplyFactor *= 1e5 / data?.meta?.population;
+    multiplyFactor *= 1e5 / popn;
   } else if (normalizedByPopulationPer === 'hundred') {
-    multiplyFactor *= 1e2 / data?.meta?.population;
+    multiplyFactor *= 1e2 / popn;
   }
 
   let val;
@@ -197,15 +201,15 @@ export const getStatistic = function (
     val = dose1 + dose2;
   } else if (statistic === 'vaccinated1Prop') {
     const dose = data?.[type]?.vaccinated1 || 0;
-    const popn = metadata?.population;
+    // const popn = metadata?.population;
     val = 100 * (dose / popn);
   } else if (statistic === 'vaccinated2Prop') {
     const dose = data?.[type]?.vaccinated2 || 0;
-    const popn = metadata?.population;
+    // const popn = metadata?.population;
     val = 100 * (dose / popn);
   } else if (statistic === 'confirmedProp') {
     const conf = data?.[type]?.confirmed || 0;
-    const popn = metadata?.population;
+    // const popn = metadata?.population;
     val = 100 * (conf / popn);
   } else if (statistic === 'tpr') {
     const confirmed = data?.[type]?.confirmed || 0;
@@ -229,7 +233,7 @@ export const getStatistic = function (
             confirmedDeltaTwoWeeksAgo)
         : 0;
   } else if (statistic === 'population') {
-    val = type === 'total' ? data?.meta?.population : 0;
+    val = type === 'total' ? popn : 0;
   } else {
     val = data?.[type]?.[statistic];
   }

@@ -244,6 +244,8 @@ export const TIMESERIES_STATISTICS = [
   // 'vaccinated2Prop',
   'confirmedProp',
   'cfr',
+  'vaccinated1',
+  'vaccinated2',
 ];
 
 export const XYPLOT_STATISTICS = [
